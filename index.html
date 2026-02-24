@@ -121,7 +121,7 @@
       background: linear-gradient(135deg, #1e1030 0%, #2a1545 50%, #1e1535 100%);
       border: 1px solid rgba(200, 130, 255, 0.2);
       border-radius: 20px;
-      padding: 2.5rem 2rem 2rem;
+      padding: 1.75rem 1.75rem 1.75rem;
       position: relative;
       overflow: hidden;
     }
@@ -147,26 +147,14 @@
 
     .hero-inner { position: relative; z-index: 1; }
 
-    .hero-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .hero-avatar {
-      width: 72px; height: 72px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent3), var(--accent2), var(--pink));
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem; font-weight: 600;
-      color: #fff;
-      flex-shrink: 0;
-      box-shadow: 0 0 0 3px rgba(200, 130, 255, 0.3), 0 4px 20px rgba(168, 85, 247, 0.3);
-      animation: float 5s ease-in-out infinite;
-    }
+.hero-avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(200, 130, 255, 0.3), 0 4px 20px rgba(168, 85, 247, 0.3);
+  animation: float 5s ease-in-out infinite;
+}
 
     .status-badge {
       display: inline-flex;
@@ -194,7 +182,7 @@
       font-weight: 300;
       line-height: 1.1;
       letter-spacing: -0.01em;
-      margin-top: 1rem;
+      margin-top: 0.75rem;
       color: var(--text);
     }
     .hero-name em {
@@ -580,6 +568,70 @@
       box-shadow: 0 8px 30px rgba(168,85,247,0.5);
     }
 
+    /* ── CLOCK BOX (inside hero, upper-right) ── */
+    .clock-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.65rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.1rem;
+      flex-shrink: 0;
+      align-self: flex-start;
+    }
+    .clock-label {
+      font-size: 0.58rem;
+      color: var(--muted2);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .clock-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, var(--lavender), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+    .clock-date {
+      font-size: 0.62rem;
+      color: var(--muted2);
+    }
+
+    /* ── HERO TOP ROW: left content + right clock ── */
+    .hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    /* ── HERO PHOTO + BADGE ROW ── */
+    .hero-photo-block {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      gap: 0.85rem;
+    }
+    .hero-name-group {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 0.4rem;
+      padding-bottom: 0.1rem;
+    }
+
     /* ── FOOTER ── */
     .footer {
       text-align: center;
@@ -600,19 +652,33 @@
   </style>
 </head>
 <body>
+
 <div class="page-wrap">
 
   <!-- HERO -->
   <div class="hero">
     <div class="hero-inner">
       <div class="hero-top">
-        <div class="hero-avatar">CR</div>
-        <span class="status-badge"><span class="status-dot"></span>Available for hire</span>
+        <div class="hero-left">
+          <div class="hero-photo-block">
+            <img class="hero-avatar" src="photo.jpg" alt="Charissa Remarca" />
+            <div class="hero-name-group">
+              <span class="status-badge"><span class="status-dot"></span>Active</span>
+            </div>
+          </div>
+        </div>
+        <!-- CLOCK -->
+        <div class="clock-box">
+          <div class="clock-label">🇵🇭 Philippine Time</div>
+          <div class="clock-time" id="ph-clock">--:--:--</div>
+          <div class="clock-date" id="ph-date">---</div>
+        </div>
       </div>
       <h1 class="hero-name">Charissa <em>Remarca</em></h1>
       <p class="hero-title">Virtual Assistant &nbsp;·&nbsp; Technical Support &nbsp;·&nbsp; B2B SaaS</p>
       <p class="hero-summary">
-        Detail-oriented Virtual Assistant and Technical Support professional with 7+ years of experience across B2B SaaS, telecom, e-commerce, and financial platforms. Skilled in remote operations, customer success, and admin support — committed to delivering results with precision and care.
+        Detail-oriented Virtual Assistant and Technical Support professional with 7+ years of experience across B2B SaaS, telecom, e-commerce, and financial platforms. Skilled in remote operations, customer success, and admin support, 
+        committed to delivering results with precision and care.
       </p>
       <div class="hero-contacts">
         <a class="contact-pill" href="mailto:chrssrmrc@gmail.com">
@@ -896,13 +962,23 @@
       Get in Touch
     </a>
   </div>
-
-  <div class="footer">© 2025 Charissa Remarca · Built with 💜</div>
-
 </div>
 
 <script>
-  if (typeof lucide !== 'undefined') lucide.createIcons();
+  function updateClock() {
+    const now = new Date();
+    const ph = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Manila' }));
+    const h = String(ph.getHours()).padStart(2,'0');
+    const m = String(ph.getMinutes()).padStart(2,'0');
+    const s = String(ph.getSeconds()).padStart(2,'0');
+    const ampm = ph.getHours() >= 12 ? 'PM' : 'AM';
+    const h12 = String(ph.getHours() % 12 || 12).padStart(2,'0');
+    document.getElementById('ph-clock').textContent = `${h12}:${m}:${s} ${ampm}`;
+    const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    document.getElementById('ph-date').textContent =
+      `${days[ph.getDay()]}, ${months[ph.getMonth()]} ${ph.getDate()}, ${ph.getFullYear()}`;
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
 </script>
-</body>
-</html>
