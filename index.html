@@ -3,982 +3,1601 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Charissa Remarca — Virtual Assistant</title>
+  <meta name="description" content="Charissa Remarca — Technical VA & SaaS Support Specialist. 7+ years resolving Tier 1–2 escalations, SSO/SCIM provisioning, API troubleshooting, and 100% SLA compliance. Available for remote roles." />
+  <meta name="author" content="Charissa Remarca" />
+  <meta property="og:title" content="Charissa Remarca — Technical VA & SaaS Support" />
+  <meta property="og:description" content="7+ years in B2B SaaS. 100% SLA compliance. 95%+ CSAT. SSO · SCIM · Okta · Datadog · Salesforce." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0f0a14" />
+  <title>Charissa Remarca — Technical VA & SaaS Support Specialist</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ═══════════════════════════════════════════════════
+   RESET
+═══════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+svg { display: block; flex-shrink: 0; }
+button { cursor: pointer; border: none; background: none; }
 
-    :root {
-      --bg:          #0f0a14;
-      --surface:     #1a1025;
-      --surface2:    #211530;
-      --surface3:    #2a1a3e;
-      --border:      rgba(200,150,255,0.15);
-      --border-h:    rgba(230,150,255,0.5);
-      --text:        #f5eeff;
-      --muted:       #c9b3e8;
-      --muted2:      #9b82bf;
-      --accent:      #d966e8;
-      --accent2:     #f06fa0;
-      --accent3:     #a855f7;
-      --pink:        #f472b6;
-      --lavender:    #c084fc;
-      --radius:      16px;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem 1.25rem 5rem;
-    }
-
-    /* Mesh gradient background */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background:
-        radial-gradient(ellipse 60% 50% at 10% 20%, rgba(168, 85, 247, 0.12) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 40% at 90% 80%, rgba(244, 114, 182, 0.10) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 60% at 50% 50%, rgba(217, 102, 232, 0.06) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Dot grid */
-    body::after {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: radial-gradient(rgba(200, 160, 255, 0.05) 1px, transparent 1px);
-      background-size: 28px 28px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .page-wrap {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 780px;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes shimmer {
-      0%   { background-position: -200% center; }
-      100% { background-position: 200% center; }
-    }
-    @keyframes pulse-ring {
-      0%, 100% { opacity: 0.4; transform: scale(1); }
-      50%       { opacity: 0.8; transform: scale(1.04); }
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-6px); }
-    }
-
-    .page-wrap > * {
-      animation: fadeUp 0.6s ease both;
-    }
-    .page-wrap > *:nth-child(1) { animation-delay: 0.05s; }
-    .page-wrap > *:nth-child(2) { animation-delay: 0.12s; }
-    .page-wrap > *:nth-child(3) { animation-delay: 0.19s; }
-    .page-wrap > *:nth-child(4) { animation-delay: 0.26s; }
-    .page-wrap > *:nth-child(5) { animation-delay: 0.33s; }
-    .page-wrap > *:nth-child(6) { animation-delay: 0.40s; }
-    .page-wrap > *:nth-child(7) { animation-delay: 0.47s; }
-
-    /* ── CARD BASE ── */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.75rem 2rem;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    .card:hover {
-      border-color: var(--border-h);
-      box-shadow: 0 0 30px rgba(200, 130, 255, 0.08);
-    }
-
-    /* ── HERO ── */
-    .hero {
-      background: linear-gradient(135deg, #1e1030 0%, #2a1545 50%, #1e1535 100%);
-      border: 1px solid rgba(200, 130, 255, 0.2);
-      border-radius: 20px;
-      padding: 1.75rem 1.75rem 1.75rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -60px; right: -60px;
-      width: 220px; height: 220px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(217, 102, 232, 0.2) 0%, transparent 70%);
-      animation: pulse-ring 4s ease-in-out infinite;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -40px; left: -40px;
-      width: 160px; height: 160px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(244, 114, 182, 0.15) 0%, transparent 70%);
-      animation: pulse-ring 5s ease-in-out infinite 1s;
-    }
-
-    .hero-inner { position: relative; z-index: 1; }
-
-.hero-avatar {
-  width: 72px; height: 72px;
-  border-radius: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
-  box-shadow: 0 0 0 3px rgba(200, 130, 255, 0.3), 0 4px 20px rgba(168, 85, 247, 0.3);
-  animation: float 5s ease-in-out infinite;
+/* ═══════════════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════════════ */
+:root {
+  --bg:        #0f0a14;
+  --bg1:       #120d18;
+  --surface:   #1a1025;
+  --surface2:  #211530;
+  --surface3:  #2a1a3e;
+  --border:    rgba(200,150,255,0.13);
+  --border-h:  rgba(230,150,255,0.40);
+  --text:      #f5eeff;
+  --muted:     #c9b3e8;
+  --muted2:    #9b82bf;
+  --accent:    #d966e8;
+  --accent2:   #f06fa0;
+  --accent3:   #a855f7;
+  --pink:      #f472b6;
+  --lav:       #c084fc;
+  --green:     #a3e635;
+  --amber:     #fbbf24;
+  --mono:      'IBM Plex Mono', monospace;
+  --serif:     'Cormorant Garamond', serif;
+  --sans:      'DM Sans', sans-serif;
+  --r:         14px;
+  --r-sm:      8px;
+  --wrap:      1100px;
+  --sec-py:    96px;
 }
 
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: rgba(168, 85, 247, 0.15);
-      border: 1px solid rgba(168, 85, 247, 0.35);
-      border-radius: 100px;
-      padding: 0.3rem 0.75rem;
-      font-size: 0.72rem;
-      color: var(--lavender);
-      font-weight: 500;
-      letter-spacing: 0.04em;
-    }
-    .status-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: #a3e635;
-      box-shadow: 0 0 6px #a3e635;
-    }
+/* ═══════════════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════════════ */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.65;
+}
 
-    .hero-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 6vw, 3.2rem);
-      font-weight: 300;
-      line-height: 1.1;
-      letter-spacing: -0.01em;
-      margin-top: 0.75rem;
-      color: var(--text);
-    }
-    .hero-name em {
-      font-style: italic;
-      background: linear-gradient(90deg, var(--lavender), var(--pink), var(--accent));
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: shimmer 4s linear infinite;
-    }
+/* Fixed mesh background */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 50% at 10% 20%, rgba(168,85,247,0.11) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 90% 80%, rgba(244,114,182,0.09) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 50% 50%, rgba(217,102,232,0.05) 0%, transparent 70%);
+}
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(200,160,255,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
 
-    .hero-title {
-      font-size: 0.85rem;
-      color: var(--muted2);
-      margin-top: 0.3rem;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
 
-    .hero-summary {
-      margin-top: 1.25rem;
-      font-size: 0.96rem;
-      line-height: 1.7;
-      color: var(--muted);
-      max-width: 580px;
-    }
+/* Mono util */
+.mono { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.09em; font-weight: 500; }
 
-    .hero-contacts {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 1.5rem;
-    }
+/* ═══════════════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════════════ */
+@keyframes fadeUp   { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+@keyframes shimmer  { 0%{background-position:-200% center} 100%{background-position:200% center} }
+@keyframes pulse-ring { 0%,100%{opacity:.4;transform:scale(1)} 50%{opacity:.8;transform:scale(1.05)} }
+@keyframes float    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+@keyframes glow-dot { 0%,100%{box-shadow:0 0 6px var(--green)} 50%{box-shadow:0 0 14px var(--green),0 0 22px rgba(163,230,53,.25)} }
+@keyframes blink    { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes pulse-amber { 0%,100%{box-shadow:0 0 6px var(--amber)} 50%{box-shadow:0 0 12px var(--amber)} }
 
-    .contact-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 0.35rem 0.85rem;
-      font-size: 0.78rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: all 0.25s;
-    }
-    .contact-pill:hover {
-      background: rgba(200, 130, 255, 0.12);
-      border-color: rgba(200, 130, 255, 0.4);
-      color: var(--text);
-    }
-    .contact-pill svg { flex-shrink: 0; }
+.fade-up { opacity:0; transform:translateY(20px); transition:opacity .55s ease,transform .55s ease; }
+.fade-up.visible { opacity:1; transform:translateY(0); }
 
-    /* ── SECTION HEADER ── */
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1.25rem;
-    }
-    .section-icon {
-      width: 30px; height: 30px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, rgba(168,85,247,0.25), rgba(244,114,182,0.2));
-      border: 1px solid rgba(200, 130, 255, 0.25);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--lavender);
-      flex-shrink: 0;
-    }
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      color: var(--text);
-    }
-    .section-line {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(to right, rgba(200,130,255,0.2), transparent);
-    }
+/* ═══════════════════════════════════════════════════
+   GLASS CARD
+═══════════════════════════════════════════════════ */
+.glass {
+  background: rgba(26,16,37,0.55);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+  border: 1px solid var(--border);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), 0 4px 24px rgba(0,0,0,.3);
+}
+.glass:hover {
+  border-color: var(--border-h);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.10), 0 0 28px rgba(200,130,255,0.08);
+}
 
-    /* ── SKILLS GRID ── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 0.75rem;
-    }
+/* ═══════════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  transition: background .3s, border-color .3s;
+  border-bottom: 1px solid transparent;
+}
+.nav--scrolled {
+  background: rgba(15,10,20,0.92);
+  backdrop-filter: blur(18px);
+  border-color: var(--border);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.nav-brand {
+  font-family: var(--mono); font-size: 16px; font-weight: 600;
+  color: var(--text); letter-spacing: -0.01em;
+}
+.nav-brand span { color: var(--lav); }
+.nav-links { display: flex; align-items: center; gap: 2px; }
+.nav-links a {
+  font-size: 13px; font-weight: 500; color: var(--muted2);
+  padding: 6px 13px; border-radius: 6px;
+  transition: color .18s, background .18s;
+}
+.nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+.nav-hire {
+  background: linear-gradient(135deg,var(--accent3),var(--accent2)) !important;
+  color: #fff !important; font-weight: 600 !important;
+  margin-left: 8px; padding: 7px 16px !important;
+  border-radius: 100px !important;
+}
+.nav-hire:hover { opacity: .88; }
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px; padding: 8px;
+}
+.nav-hamburger span { display:block; width:22px; height:1.5px; background:var(--muted2); transition:all .25s; }
+.hamburger--open span:first-child { transform:rotate(45deg) translate(4.5px,4.5px); }
+.hamburger--open span:last-child  { transform:rotate(-45deg) translate(4.5px,-4.5px); }
 
-    .skill-group {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1rem 1.1rem;
-      transition: all 0.25s;
-    }
-    .skill-group:hover {
-      border-color: rgba(200,130,255,0.3);
-      background: var(--surface3);
-    }
+/* ═══════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════ */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 120px 0 80px; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -80px; right: -80px;
+  width: 420px; height: 420px; border-radius: 50%;
+  background: radial-gradient(circle,rgba(168,85,247,.15) 0%,transparent 70%);
+  animation: pulse-ring 5s ease-in-out infinite; pointer-events: none;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: -60px; left: -60px;
+  width: 300px; height: 300px; border-radius: 50%;
+  background: radial-gradient(circle,rgba(244,114,182,.12) 0%,transparent 70%);
+  animation: pulse-ring 6s ease-in-out infinite 1.5s; pointer-events: none;
+}
+.hero-inner { display: grid; grid-template-columns: 1fr 380px; gap: 64px; align-items: center; }
 
-    .skill-group-label {
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent2);
-      margin-bottom: 0.6rem;
-      font-weight: 600;
-    }
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-    }
-    .skill-tag {
-      background: rgba(168,85,247,0.1);
-      border: 1px solid rgba(168,85,247,0.2);
-      border-radius: 6px;
-      padding: 0.18rem 0.5rem;
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
+/* Left column */
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 28px; color: var(--lav);
+}
+.status-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--green); animation: glow-dot 2.2s ease-in-out infinite;
+}
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(3rem,7vw,5rem);
+  font-weight: 300; line-height: 1.05; letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.hero-name em {
+  font-style: italic;
+  background: linear-gradient(90deg,var(--lav),var(--pink),var(--accent));
+  background-size: 200% auto;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; animation: shimmer 4s linear infinite;
+}
+.hero-title {
+  font-size: .78rem; color: var(--muted2); font-weight: 400;
+  letter-spacing: .14em; text-transform: uppercase; margin-bottom: 20px;
+}
+.hero-summary {
+  font-size: .97rem; color: var(--muted); line-height: 1.75;
+  max-width: 560px; margin-bottom: 32px;
+}
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.cta-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 28px; border-radius: 100px;
+  background: linear-gradient(135deg,var(--accent3),var(--accent2),var(--pink));
+  color: #fff; font-size: .87rem; font-weight: 600;
+  box-shadow: 0 4px 20px rgba(168,85,247,.35); transition: all .25s;
+}
+.cta-primary:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(168,85,247,.5); }
+.cta-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 24px; border-radius: 100px;
+  border: 1px solid var(--border-h); color: var(--muted);
+  font-size: .87rem; font-weight: 500; transition: all .25s;
+}
+.cta-secondary:hover { border-color: var(--lav); color: var(--lav); background: rgba(200,130,255,.07); }
 
-    /* ── EXPERIENCE ── */
-    .exp-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
+.hero-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-family: var(--mono); font-size: 10.5px; color: var(--muted2);
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: 100px; padding: 5px 13px; letter-spacing: 0.04em;
+}
 
-    .exp-item {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0 1.1rem;
-      padding-bottom: 1.5rem;
-      position: relative;
-    }
-    .exp-item:last-child { padding-bottom: 0; }
+/* Right column — stat card */
+.hero-card {
+  border-radius: 20px; padding: 28px;
+  background: linear-gradient(135deg,rgba(30,16,48,.88) 0%,rgba(42,21,69,.80) 50%,rgba(30,21,53,.88) 100%);
+  border: 1px solid rgba(200,130,255,.22);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 8px 40px rgba(0,0,0,.4);
+}
+.hero-avatar {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: linear-gradient(135deg,var(--accent3),var(--accent2),var(--pink));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: 1.7rem; font-weight: 600; color: #fff;
+  box-shadow: 0 0 0 3px rgba(200,130,255,.28), 0 4px 20px rgba(168,85,247,.3);
+  animation: float 5s ease-in-out infinite; margin-bottom: 20px; user-select: none;
+}
+.hero-stat-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;
+}
+.hero-stat {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px; text-align: center;
+}
+.hero-stat-num {
+  font-family: var(--serif); font-size: 1.8rem; font-weight: 600; line-height: 1;
+  background: linear-gradient(135deg,var(--lav),var(--pink));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-stat-label { font-size: .68rem; color: var(--muted2); margin-top: 3px; text-transform: uppercase; letter-spacing: .06em; }
 
-    /* Timeline line */
-    .exp-item::before {
-      content: '';
-      position: absolute;
-      left: 9px;
-      top: 22px;
-      bottom: 0;
-      width: 1px;
-      background: linear-gradient(to bottom, rgba(200,130,255,0.3), transparent);
-    }
-    .exp-item:last-child::before { display: none; }
+.contact-pills { display: flex; flex-direction: column; gap: 8px; }
+.contact-pill {
+  display: flex; align-items: center; gap: 9px;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 13px;
+  font-size: .79rem; color: var(--muted); transition: all .22s;
+}
+.contact-pill:hover { border-color: rgba(200,130,255,.35); color: var(--text); background: rgba(200,130,255,.07); }
 
-    .exp-dot {
-      width: 19px; height: 19px;
-      border-radius: 50%;
-      border: 2px solid rgba(200,130,255,0.4);
-      background: linear-gradient(135deg, rgba(168,85,247,0.3), rgba(244,114,182,0.2));
-      margin-top: 2px;
-      flex-shrink: 0;
-      position: relative;
-      z-index: 1;
-      transition: all 0.3s;
-    }
-    .exp-item:hover .exp-dot {
-      border-color: var(--lavender);
-      box-shadow: 0 0 12px rgba(200,130,255,0.4);
-    }
+/* ═══════════════════════════════════════════════════
+   SECTION BASE
+═══════════════════════════════════════════════════ */
+.section { padding: var(--sec-py) 0; }
+.section-alt { background: var(--bg1); }
 
-    .exp-role {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .exp-company {
-      font-size: 0.82rem;
-      color: var(--lavender);
-      margin-top: 0.1rem;
-      font-weight: 500;
-    }
-    .exp-date {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      font-size: 0.72rem;
-      color: var(--muted2);
-      margin-top: 0.25rem;
-    }
+.section-head {
+  display: flex; align-items: flex-start; gap: 18px; margin-bottom: 52px;
+}
+.section-num { font-family: var(--mono); font-size: 10.5px; color: var(--lav); padding-top: 7px; min-width: 24px; }
+.section-title {
+  font-family: var(--serif); font-size: clamp(1.8rem,4vw,2.6rem);
+  font-weight: 400; letter-spacing: -0.02em; color: var(--text); margin-bottom: 8px;
+}
+.section-title em { font-style: italic; color: var(--lav); }
+.section-sub { font-size: .9rem; color: var(--muted2); line-height: 1.7; }
 
-    .exp-bullets {
-      margin-top: 0.5rem;
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-    .exp-bullets li {
-      font-size: 0.83rem;
-      color: var(--muted);
-      line-height: 1.55;
-      padding-left: 0.9rem;
-      position: relative;
-    }
-    .exp-bullets li::before {
-      content: '◆';
-      position: absolute;
-      left: 0;
-      font-size: 0.38rem;
-      color: var(--accent2);
-      top: 0.45em;
-    }
+/* ═══════════════════════════════════════════════════
+   PROBLEMS I SOLVE
+═══════════════════════════════════════════════════ */
+.problems-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 14px;
+}
+.problem-card {
+  border-radius: var(--r); padding: 24px 22px; transition: all .28s;
+}
+.problem-card:hover { transform: translateY(-3px); }
+.problem-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: linear-gradient(135deg,rgba(168,85,247,.2),rgba(244,114,182,.14));
+  border: 1px solid rgba(200,130,255,.2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--lav); margin-bottom: 14px;
+}
+.problem-title { font-size: .9rem; font-weight: 600; color: var(--text); margin-bottom: 7px; }
+.problem-desc { font-size: .79rem; color: var(--muted2); line-height: 1.6; }
 
-    /* ── STATS ROW ── */
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.75rem;
-    }
+/* ═══════════════════════════════════════════════════
+   SERVICES TABLE
+═══════════════════════════════════════════════════ */
+.svc-table { display: flex; flex-direction: column; }
+.svc-row {
+  display: grid; grid-template-columns: 32px 1fr 180px;
+  gap: 24px; padding: 28px 0;
+  border-top: 1px solid var(--border);
+  align-items: start; transition: background .2s;
+}
+.svc-row:last-child { border-bottom: 1px solid var(--border); }
+.svc-row:hover { background: rgba(168,85,247,.02); padding-left: 4px; }
+.svc-num { font-family: var(--mono); font-size: 10.5px; color: var(--muted2); padding-top: 3px; }
+.svc-body h3 {
+  font-size: .95rem; font-weight: 600; color: var(--text); margin-bottom: 7px;
+}
+.svc-body p { font-size: .82rem; color: var(--muted2); line-height: 1.7; }
+.svc-tags { display: flex; flex-direction: column; gap: 5px; align-items: flex-end; padding-top: 3px; }
+.svc-tag {
+  font-family: var(--mono); font-size: 10px; color: var(--muted2);
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: 4px; padding: 3px 8px; white-space: nowrap;
+}
 
-    .stat-card {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.1rem 1rem;
-      text-align: center;
-      transition: all 0.25s;
-      position: relative;
-      overflow: hidden;
-    }
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(168,85,247,0.06), rgba(244,114,182,0.04));
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .stat-card:hover::before { opacity: 1; }
-    .stat-card:hover { border-color: rgba(200,130,255,0.3); }
+/* ═══════════════════════════════════════════════════
+   STACK MATRIX
+═══════════════════════════════════════════════════ */
+.stack-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 2px; background: var(--border); border-radius: var(--r); overflow: hidden;
+  margin-bottom: 20px;
+}
+.stack-block {
+  background: var(--surface); padding: 24px; transition: background .2s;
+}
+.stack-block:hover { background: var(--surface2); }
+.stack-block--hl {
+  background: linear-gradient(135deg,rgba(168,85,247,.1) 0%,rgba(168,85,247,.03) 100%);
+  border: 1px solid rgba(168,85,247,.25);
+}
+.stack-block--hl:hover { background: rgba(168,85,247,.12); }
+.stack-label {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 9.5px; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--muted2); margin-bottom: 16px;
+}
+.stack-block--hl .stack-label { color: var(--lav); }
+.stack-items { display: flex; flex-direction: column; gap: 9px; }
+.stack-item { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.stack-name { font-size: .86rem; font-weight: 600; color: var(--text); }
+.stack-level { font-family: var(--mono); font-size: 10px; color: var(--muted2); }
 
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      font-weight: 600;
-      background: linear-gradient(135deg, var(--lavender), var(--pink));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 0.72rem;
-      color: var(--muted2);
-      margin-top: 0.3rem;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-    }
+.env-bar {
+  display: flex; align-items: center; gap: 18px;
+  padding: 16px 22px; border-radius: var(--r); border: 1px solid var(--border);
+  background: rgba(26,16,37,.5);
+}
+.env-pill { display: flex; align-items: center; gap: 8px; }
+.env-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.env-prod .env-dot { background: var(--green); animation: glow-dot 2.2s infinite; }
+.env-qa .env-dot { background: var(--amber); animation: pulse-amber 2.2s infinite; }
+.env-prod { color: var(--green); }
+.env-qa { color: var(--amber); }
+.env-divider { width: 1px; height: 18px; background: var(--border); }
+.env-note { font-size: .79rem; color: var(--muted2); margin-left: auto; }
 
-    /* ── SERVICES ── */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 0.75rem;
-    }
+/* ═══════════════════════════════════════════════════
+   CASE STUDY
+═══════════════════════════════════════════════════ */
+.case-card {
+  border-radius: var(--r); overflow: hidden;
+  background: var(--surface); border: 1px solid rgba(200,130,255,.18);
+  box-shadow: 0 8px 40px rgba(0,0,0,.3);
+}
+.case-head {
+  padding: 32px 36px 24px;
+  background: linear-gradient(135deg,rgba(168,85,247,.07) 0%,transparent 60%);
+  border-bottom: 1px solid var(--border);
+}
+.case-tag {
+  display: inline-block; font-family: var(--mono); font-size: 9.5px;
+  color: var(--lav); background: rgba(168,85,247,.12); border: 1px solid rgba(168,85,247,.25);
+  border-radius: 4px; padding: 4px 10px; letter-spacing: .08em; margin-bottom: 14px;
+}
+.case-title {
+  font-family: var(--serif); font-size: clamp(1.2rem,2.5vw,1.7rem);
+  font-weight: 400; letter-spacing: -0.01em; line-height: 1.3; color: var(--text);
+}
+.case-body { display: flex; flex-direction: column; }
+.case-block {
+  display: grid; grid-template-columns: 140px 1fr; gap: 28px;
+  padding: 28px 36px; border-bottom: 1px solid var(--border); align-items: start;
+}
+.case-block:last-child { border-bottom: none; }
+.case-block-label {
+  display: flex; align-items: center; gap: 9px;
+  font-family: var(--sans); font-size: .78rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em; padding-top: 2px;
+}
+.blk-num {
+  width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 9px; font-weight: 600;
+}
+.case-challenge .blk-num { background: rgba(251,191,36,.12); color: var(--amber); border: 1px solid rgba(251,191,36,.25); }
+.case-challenge .case-block-label { color: var(--amber); }
+.case-action .blk-num { background: rgba(168,85,247,.15); color: var(--lav); border: 1px solid rgba(168,85,247,.28); }
+.case-action .case-block-label { color: var(--lav); }
+.case-result .blk-num { background: rgba(163,230,53,.1); color: var(--green); border: 1px solid rgba(163,230,53,.22); }
+.case-result .case-block-label { color: var(--green); }
 
-    .service-card {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.1rem;
-      transition: all 0.3s;
-      cursor: default;
-    }
-    .service-card:hover {
-      background: var(--surface3);
-      border-color: rgba(200,130,255,0.3);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(168,85,247,0.12);
-    }
+.case-content p { font-size: .88rem; color: var(--muted2); line-height: 1.8; }
+.case-list { display: flex; flex-direction: column; gap: 12px; }
+.case-list li { font-size: .86rem; color: var(--muted2); line-height: 1.75; padding-left: 18px; position: relative; }
+.case-list li::before { content: '→'; position: absolute; left: 0; color: var(--lav); font-size: .8rem; }
+.case-list strong { color: var(--text); font-weight: 600; }
 
-    .service-icon {
-      width: 36px; height: 36px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(244,114,182,0.15));
-      border: 1px solid rgba(200,130,255,0.2);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--lavender);
-      margin-bottom: 0.75rem;
-    }
+.result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+.result-metric {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 18px;
+}
+.result-val {
+  font-family: var(--serif); font-size: 1.75rem; font-weight: 600;
+  color: var(--text); letter-spacing: -0.02em; display: block; margin-bottom: 5px;
+}
+.result-lbl { font-size: .76rem; color: var(--muted2); line-height: 1.5; }
+.result-note { font-size: .8rem; color: var(--muted2); line-height: 1.7; font-style: italic; }
 
-    .service-name {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.3rem;
-    }
-    .service-desc {
-      font-size: 0.76rem;
-      color: var(--muted2);
-      line-height: 1.5;
-    }
+/* ═══════════════════════════════════════════════════
+   WHY HIRE ME
+═══════════════════════════════════════════════════ */
+.why-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; }
+.why-card { border-radius: var(--r); padding: 24px; transition: all .28s; }
+.why-card:hover { transform: translateY(-2px); }
+.why-icon {
+  width: 36px; height: 36px; border-radius: 9px;
+  background: linear-gradient(135deg,rgba(168,85,247,.2),rgba(244,114,182,.12));
+  border: 1px solid rgba(200,130,255,.2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--lav); margin-bottom: 13px;
+}
+.why-title { font-size: .9rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.why-desc { font-size: .8rem; color: var(--muted2); line-height: 1.65; }
 
-    /* ── EDUCATION ── */
-    .edu-card {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-    .edu-icon {
-      width: 44px; height: 44px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(244,114,182,0.15));
-      border: 1px solid rgba(200,130,255,0.25);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--lavender);
-      flex-shrink: 0;
-    }
-    .edu-degree {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .edu-field {
-      font-size: 0.82rem;
-      color: var(--lavender);
-      margin-top: 0.15rem;
-    }
-    .edu-school {
-      font-size: 0.78rem;
-      color: var(--muted2);
-      margin-top: 0.25rem;
-    }
+/* ═══════════════════════════════════════════════════
+   RESULTS METRICS
+═══════════════════════════════════════════════════ */
+.metrics-grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 2px; background: var(--border); border-radius: var(--r); overflow: hidden;
+}
+.metric {
+  background: var(--surface); padding: 36px 28px;
+  position: relative; transition: background .2s;
+}
+.metric:hover { background: var(--surface2); }
+.metric--hl {
+  background: linear-gradient(160deg,rgba(168,85,247,.10) 0%,rgba(168,85,247,.03) 100%);
+}
+.metric-bar {
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg,var(--accent3),var(--pink));
+}
+.metric-num {
+  font-family: var(--serif); font-size: clamp(2rem,4vw,3rem);
+  font-weight: 600; letter-spacing: -0.04em; line-height: 1; margin-bottom: 10px; color: var(--text);
+}
+.metric-num sup { font-size: .5em; color: var(--lav); vertical-align: super; }
+.metric-name {
+  font-family: var(--mono); font-size: 9.5px; text-transform: uppercase;
+  letter-spacing: .12em; color: var(--lav); font-weight: 600; margin-bottom: 8px;
+}
+.metric-detail { font-size: .77rem; color: var(--muted2); line-height: 1.6; }
 
-    /* ── CTA ── */
-    .cta-card {
-      background: linear-gradient(135deg, #2a1545 0%, #3a1e55 50%, #2a1540 100%);
-      border: 1px solid rgba(200,130,255,0.25);
-      border-radius: 20px;
-      padding: 2rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-card::before {
-      content: '';
-      position: absolute;
-      top: -80px; left: 50%;
-      transform: translateX(-50%);
-      width: 200px; height: 200px;
-      background: radial-gradient(circle, rgba(217,102,232,0.2), transparent 70%);
-      pointer-events: none;
-    }
+/* ═══════════════════════════════════════════════════
+   WORK STYLE
+═══════════════════════════════════════════════════ */
+.style-wrap { display: grid; grid-template-columns: 1fr 400px; gap: 28px; align-items: start; }
+.traits { display: flex; flex-direction: column; }
+.trait {
+  display: flex; gap: 16px; padding: 22px 0;
+  border-bottom: 1px solid var(--border); align-items: flex-start;
+}
+.trait:first-child { border-top: 1px solid var(--border); }
+.trait-icon {
+  width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0;
+  background: rgba(168,85,247,.12); border: 1px solid rgba(168,85,247,.22);
+  color: var(--lav); display: flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+}
+.trait h4 { font-size: .9rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.trait p { font-size: .82rem; color: var(--muted2); line-height: 1.65; }
 
-    .cta-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.7rem;
-      font-weight: 400;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-    .cta-sub {
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.7rem 1.75rem;
-      border-radius: 100px;
-      background: linear-gradient(135deg, var(--accent3), var(--accent2), var(--pink));
-      color: #fff;
-      font-size: 0.88rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s;
-      box-shadow: 0 4px 20px rgba(168,85,247,0.35);
-    }
-    .cta-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(168,85,247,0.5);
-    }
+/* Terminal */
+.terminal {
+  background: #070910; border: 1px solid rgba(200,130,255,.18);
+  border-radius: var(--r); overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,.5); position: sticky; top: 76px;
+}
+.terminal-bar {
+  display: flex; align-items: center; gap: 10px;
+  background: #0d0f18; padding: 11px 15px; border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.t-dots { display: flex; gap: 5px; }
+.t-dots span { width: 10px; height: 10px; border-radius: 50%; }
+.t-dots span:nth-child(1) { background: #ff5f57; }
+.t-dots span:nth-child(2) { background: #ffbd2e; }
+.t-dots span:nth-child(3) { background: #28c840; }
+.t-title { font-family: var(--mono); font-size: 10.5px; color: var(--muted2); margin-left: auto; }
+.terminal-body {
+  padding: 20px; font-family: var(--mono); font-size: 12px;
+  display: flex; flex-direction: column; gap: 6px; line-height: 1;
+}
+.tl { display: flex; gap: 7px; }
+.tl-blank { height: 4px; }
+.t-prompt { color: var(--lav); }
+.t-cmd { color: var(--text); }
+.t-cmt { color: #4a5568; }
+.t-var { color: #a78bfa; }
+.t-str { color: var(--green); }
+.t-num { color: var(--amber); }
+.t-ok  { color: var(--green); }
+.t-cursor { color: var(--lav); animation: blink 1.1s step-end infinite; }
 
-    /* ── CLOCK BOX (inside hero, upper-right) ── */
-    .clock-box {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 0.65rem 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.1rem;
-      flex-shrink: 0;
-      align-self: flex-start;
-    }
-    .clock-label {
-      font-size: 0.58rem;
-      color: var(--muted2);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .clock-time {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.55rem;
-      font-weight: 600;
-      background: linear-gradient(90deg, var(--lavender), var(--pink));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1;
-    }
-    .clock-date {
-      font-size: 0.62rem;
-      color: var(--muted2);
-    }
+/* ═══════════════════════════════════════════════════
+   EXPERIENCE
+═══════════════════════════════════════════════════ */
+.exp-list { display: flex; flex-direction: column; }
+.exp-item {
+  display: grid; grid-template-columns: auto 1fr; gap: 0 18px;
+  padding-bottom: 32px; position: relative;
+}
+.exp-item:last-child { padding-bottom: 0; }
+.exp-item::before {
+  content: ''; position: absolute; left: 9px; top: 22px; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom,rgba(200,130,255,.28),transparent);
+}
+.exp-item:last-child::before { display: none; }
+.exp-dot {
+  width: 19px; height: 19px; border-radius: 50%; flex-shrink: 0;
+  border: 2px solid rgba(200,130,255,.35);
+  background: linear-gradient(135deg,rgba(168,85,247,.28),rgba(244,114,182,.18));
+  margin-top: 2px; position: relative; z-index: 1; transition: all .28s;
+}
+.exp-item:hover .exp-dot { border-color: var(--lav); box-shadow: 0 0 12px rgba(200,130,255,.4); }
+.exp-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.exp-role { font-size: .95rem; font-weight: 600; color: var(--text); }
+.exp-company { font-size: .82rem; color: var(--lav); font-weight: 500; margin-top: 3px; }
+.exp-date { font-family: var(--mono); font-size: 10.5px; color: var(--muted2); white-space: nowrap; margin-top: 4px; }
+.exp-bullets { margin-top: 10px; display: flex; flex-direction: column; gap: 5px; }
+.exp-bullets li { font-size: .82rem; color: var(--muted); line-height: 1.6; padding-left: 14px; position: relative; }
+.exp-bullets li::before { content: '◆'; position: absolute; left: 0; top: .46em; font-size: .35rem; color: var(--accent2); }
 
-    /* ── HERO TOP ROW: left content + right clock ── */
-    .hero-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 0.75rem;
-    }
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
+/* ═══════════════════════════════════════════════════
+   EDUCATION
+═══════════════════════════════════════════════════ */
+.edu-card { display: flex; align-items: flex-start; gap: 16px; padding: 24px; border-radius: var(--r); }
+.edu-icon {
+  width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+  background: linear-gradient(135deg,rgba(168,85,247,.2),rgba(244,114,182,.12));
+  border: 1px solid rgba(200,130,255,.22);
+  display: flex; align-items: center; justify-content: center; color: var(--lav);
+}
+.edu-degree { font-size: .95rem; font-weight: 600; color: var(--text); }
+.edu-major { font-size: .83rem; color: var(--lav); margin-top: 4px; }
+.edu-school { font-size: .78rem; color: var(--muted2); margin-top: 5px; }
 
-    /* ── HERO PHOTO + BADGE ROW ── */
-    .hero-photo-block {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-end;
-      gap: 0.85rem;
-    }
-    .hero-name-group {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      gap: 0.4rem;
-      padding-bottom: 0.1rem;
-    }
+/* ═══════════════════════════════════════════════════
+   AVAILABILITY
+═══════════════════════════════════════════════════ */
+.avail-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.avail-card { border-radius: var(--r); padding: 24px; transition: all .28s; position: relative; }
+.avail-card:hover { transform: translateY(-2px); }
+.avail-online {
+  position: absolute; top: 16px; right: 16px;
+  width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+  animation: glow-dot 2.2s infinite;
+}
+.avail-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: linear-gradient(135deg,rgba(168,85,247,.2),rgba(244,114,182,.12));
+  border: 1px solid rgba(200,130,255,.2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--lav); margin-bottom: 14px;
+}
+.avail-title { font-size: .9rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.avail-desc { font-size: .79rem; color: var(--muted2); line-height: 1.6; }
 
-    /* ── FOOTER ── */
-    .footer {
-      text-align: center;
-      font-size: 0.73rem;
-      color: var(--muted2);
-      padding-top: 0.5rem;
-      opacity: 0.7;
-    }
+/* ═══════════════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════════════ */
+.contact-wrap { display: grid; grid-template-columns: 1fr 320px; gap: 20px; align-items: start; }
+.contact-links { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.contact-link {
+  display: flex; align-items: center; gap: 14px;
+  padding: 18px; border-radius: 12px; border: 1px solid var(--border);
+  background: var(--surface); transition: all .22s;
+}
+.contact-link:hover { border-color: rgba(200,130,255,.35); background: rgba(168,85,247,.07); }
+.cl-icon {
+  width: 38px; height: 38px; border-radius: 9px;
+  background: rgba(168,85,247,.12); border: 1px solid rgba(168,85,247,.22);
+  color: var(--lav); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.cl-body { flex: 1; }
+.cl-label { font-family: var(--mono); font-size: 9.5px; color: var(--muted2); margin-bottom: 2px; display: block; }
+.cl-value { font-size: .88rem; font-weight: 500; color: var(--text); }
+.cl-arrow { color: var(--muted2); font-size: 1rem; transition: all .2s; }
+.contact-link:hover .cl-arrow { color: var(--lav); transform: translate(2px,-2px); }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 520px) {
-      .card { padding: 1.25rem; }
-      .hero { padding: 1.75rem 1.25rem 1.5rem; }
-      .stats-row { grid-template-columns: repeat(3, 1fr); }
-      .stat-num { font-size: 1.5rem; }
-      .services-grid, .skills-grid { grid-template-columns: 1fr 1fr; }
-    }
+.fit-block { border-radius: var(--r); padding: 22px; border: 1px solid var(--border); background: var(--surface); margin-bottom: 12px; }
+.fit-label { font-family: var(--mono); font-size: 9.5px; color: var(--muted2); margin-bottom: 12px; display: block; text-transform: uppercase; letter-spacing: .08em; }
+.fit-list { display: flex; flex-direction: column; gap: 8px; }
+.fit-list li { font-size: .82rem; color: var(--muted2); display: flex; gap: 8px; align-items: flex-start; line-height: 1.5; }
+.fit-yes li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+.fit-no  li::before { content: '×'; color: var(--muted2); font-weight: 700; flex-shrink: 0; }
+
+.cta-big {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 15px; border-radius: 100px; width: 100%;
+  background: linear-gradient(135deg,var(--accent3),var(--accent2),var(--pink));
+  color: #fff; font-size: .9rem; font-weight: 600;
+  box-shadow: 0 4px 20px rgba(168,85,247,.35); transition: all .25s;
+}
+.cta-big:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(168,85,247,.5); }
+
+/* ═══════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════ */
+.footer {
+  border-top: 1px solid var(--border); padding: 26px 0;
+  background: var(--bg1);
+}
+.footer-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-brand { font-family: var(--mono); font-size: 12px; color: var(--text); }
+.footer-brand span { color: var(--lav); }
+.footer-info  { font-family: var(--mono); font-size: 11px; color: var(--muted2); }
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-card  { max-width: 420px; }
+  .metrics-grid { grid-template-columns: repeat(2,1fr); }
+  .style-wrap { grid-template-columns: 1fr; }
+  .terminal { position: static; }
+  .stack-grid { grid-template-columns: repeat(2,1fr); }
+  .contact-wrap { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  :root { --sec-py: 64px; }
+  .nav-links { display: none; flex-direction: column; align-items: flex-start; position: absolute; top: 60px; left: 0; right: 0; background: rgba(15,10,20,.96); backdrop-filter: blur(18px); padding: 14px 20px 20px; border-bottom: 1px solid var(--border); gap: 2px; }
+  .nav-links--open { display: flex; }
+  .nav-links a { width: 100%; padding: 10px 14px; }
+  .nav-hire { margin-left: 0 !important; margin-top: 6px; text-align: center; border-radius: 100px !important; }
+  .nav-hamburger { display: flex; }
+  .problems-grid { grid-template-columns: 1fr 1fr; }
+  .svc-row { grid-template-columns: 1fr; gap: 8px; }
+  .svc-num { display: none; }
+  .svc-tags { flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
+  .stack-grid { grid-template-columns: 1fr; }
+  .case-block { grid-template-columns: 1fr; gap: 10px; }
+  .case-head,.case-block { padding: 22px 24px; }
+  .result-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .avail-grid { grid-template-columns: 1fr; }
+  .hero-ctas { flex-direction: column; }
+  .cta-primary,.cta-secondary { width: 100%; justify-content: center; }
+  .env-bar { flex-wrap: wrap; }
+  .env-note { margin-left: 0; width: 100%; }
+}
+@media (max-width: 480px) {
+  :root { --sec-py: 52px; }
+  .problems-grid { grid-template-columns: 1fr; }
+  .metrics-grid { grid-template-columns: 1fr; }
+  .hero-stat-grid { grid-template-columns: 1fr 1fr; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
   </style>
 </head>
 <body>
 
-<div class="page-wrap">
+<!-- ═══ NAV ═══ -->
+<header class="nav" id="nav">
+  <div class="nav-inner wrap">
+    <a href="#hero" class="nav-brand">CR<span>_</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#problems">Problems</a>
+      <a href="#services">Services</a>
+      <a href="#stack">Stack</a>
+      <a href="#results">Results</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact" class="nav-hire">Hire Me</a>
+    </nav>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-inner">
-      <div class="hero-top">
-        <div class="hero-left">
-          <div class="hero-photo-block">
-            <img class="hero-avatar" src="photo.jpg" alt="Charissa Remarca" />
-            <div class="hero-name-group">
-              <span class="status-badge"><span class="status-dot"></span>Active</span>
-            </div>
-          </div>
-        </div>
-        <!-- CLOCK -->
-        <div class="clock-box">
-          <div class="clock-label">🇵🇭 Philippine Time</div>
-          <div class="clock-time" id="ph-clock">--:--:--</div>
-          <div class="clock-date" id="ph-date">---</div>
-        </div>
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+  <div class="wrap hero-inner">
+
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="status-dot"></span>
+        <span class="mono">AVAILABLE · GMT+8 · REMOTE</span>
       </div>
       <h1 class="hero-name">Charissa <em>Remarca</em></h1>
-      <p class="hero-title">Virtual Assistant &nbsp;·&nbsp; Technical Support &nbsp;·&nbsp; B2B SaaS</p>
+      <p class="hero-title">Technical VA · SaaS Support · Cloud Operations</p>
       <p class="hero-summary">
-        Detail-oriented Virtual Assistant and Technical Support professional with 7+ years of experience across B2B SaaS, telecom, e-commerce, and financial platforms. Skilled in remote operations, customer success, and admin support, 
-        committed to delivering results with precision and care.
+        7+ years resolving Tier 1–2 escalations, managing identity provisioning pipelines, and partnering with engineering teams to maintain 100% SLA compliance across production and QA environments — all fully remote.
       </p>
-      <div class="hero-contacts">
-        <a class="contact-pill" href="mailto:chrssrmrc@gmail.com">
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          chrssrmrc@gmail.com
+      <div class="hero-ctas">
+        <a href="#contact" class="cta-primary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.9a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
+          Hire Me
         </a>
-        <a class="contact-pill" href="https://linkedin.com/in/charissarph/" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-          linkedin.com/in/charissarph
-        </a>
-        <span class="contact-pill">
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-          Quezon City, Metro Manila, PH
-        </span>
-        <a class="contact-pill" href="tel:+639524811195">
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.9a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
-          +63 952 481 1195
-        </a>
+        <a href="#experience" class="cta-secondary">View Experience →</a>
+      </div>
+      <div class="hero-chips">
+        <span class="chip">SSO / SAML / SCIM</span>
+        <span class="chip">Okta · Datadog · AWS</span>
+        <span class="chip">Tier 1–2 Escalations</span>
+        <span class="chip">100% SLA Compliance</span>
+        <span class="chip">Prod + QA Environments</span>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="hero-avatar">CR</div>
+        <div class="hero-stat-grid">
+          <div class="hero-stat">
+            <div class="hero-stat-num">7+</div>
+            <div class="hero-stat-label">Years Exp.</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">95%+</div>
+            <div class="hero-stat-label">CSAT Score</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">100%</div>
+            <div class="hero-stat-label">SLA Compliance</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">30–50</div>
+            <div class="hero-stat-label">Tickets / Day</div>
+          </div>
+        </div>
+        <div class="contact-pills">
+          <a class="contact-pill" href="mailto:chrssrmrc@gmail.com">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            chrssrmrc@gmail.com
+          </a>
+          <a class="contact-pill" href="https://linkedin.com/in/charissarph/" target="_blank" rel="noopener noreferrer">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            linkedin.com/in/charissarph
+          </a>
+          <span class="contact-pill">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Quezon City, Metro Manila · PH
+          </span>
+          <a class="contact-pill" href="tel:+639524811195">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.9a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
+            +63 952 481 1195
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ PROBLEMS I SOLVE ═══ -->
+<section class="section section-alt" id="problems">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <div>
+        <h2 class="section-title">Problems <em>I Solve</em></h2>
+        <p class="section-sub">Client-focused challenges I handle so your team doesn't have to.</p>
+      </div>
+    </div>
+    <div class="problems-grid">
+
+      <div class="problem-card glass fade-up">
+        <div class="problem-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="problem-title">Ticket Backlog Overload</div>
+        <div class="problem-desc">High ticket volumes stalling resolution times and burning out your team. I resolve 30–50 technical tickets daily while keeping CSAT above 95%.</div>
+      </div>
+
+      <div class="problem-card glass fade-up">
+        <div class="problem-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div class="problem-title">SSO & Login Failures</div>
+        <div class="problem-desc">Misconfigured SAML attributes, broken ACS URLs, and failed SCIM syncs blocking enterprise users. I trace, fix, and document the root cause — not just the symptom.</div>
+      </div>
+
+      <div class="problem-card glass fade-up">
+        <div class="problem-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="problem-title">User Provisioning Errors</div>
+        <div class="problem-desc">Delayed onboarding, group mismatches, and broken SCIM pipelines blocking access. I manage the full user lifecycle from provisioning to deprovisioning.</div>
+      </div>
+
+      <div class="problem-card glass fade-up">
+        <div class="problem-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" x2="6" y1="9" y2="21"/></svg>
+        </div>
+        <div class="problem-title">Unmanaged P1 Escalations</div>
+        <div class="problem-desc">High-priority incidents with no clear owner creating chaos. I own escalation handling end-to-end — triage, engineering handoff, customer updates, and closure documentation.</div>
+      </div>
+
+      <div class="problem-card glass fade-up">
+        <div class="problem-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="problem-title">No Documentation Structure</div>
+        <div class="problem-desc">Knowledge locked in one person's head, no runbooks, and inconsistent troubleshooting paths. I write SOPs, escalation templates, and decision trees teams can actually use.</div>
+      </div>
+
+      <div class="problem-card glass fade-up">
+        <div class="problem-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg>
+        </div>
+        <div class="problem-title">SLA Slippage & CSAT Drops</div>
+        <div class="problem-desc">Missed response windows and unresolved tickets damaging customer trust. I've maintained 100% SLA compliance and 95%+ CSAT across high-volume SaaS environments.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <div>
+        <h2 class="section-title">Core <em>Services</em></h2>
+        <p class="section-sub">Technical support coverage across the full SaaS operations surface.</p>
+      </div>
+    </div>
+    <div class="svc-table">
+
+      <div class="svc-row fade-up">
+        <div class="svc-num">01</div>
+        <div class="svc-body">
+          <h3>Tier 1–2 Technical Support</h3>
+          <p>End-to-end issue triage, bug reproduction, environment validation, and escalation routing. Fluent in Jira-based workflows, ticket prioritization, and cross-team handoffs. Resolves 30–50 tickets daily at 95%+ CSAT.</p>
+        </div>
+        <div class="svc-tags"><span class="svc-tag">Jira</span><span class="svc-tag">Intercom</span><span class="svc-tag">SLA Mgmt</span></div>
+      </div>
+
+      <div class="svc-row fade-up">
+        <div class="svc-num">02</div>
+        <div class="svc-body">
+          <h3>SSO / SCIM User Provisioning</h3>
+          <p>SAML-based SSO configuration, SCIM provisioning and deprovisioning, user lifecycle management, and group attribute mapping in Okta. Production-level experience with enterprise IAM workflows across Azure AD and Google Workspace.</p>
+        </div>
+        <div class="svc-tags"><span class="svc-tag">Okta</span><span class="svc-tag">SSO</span><span class="svc-tag">SCIM</span><span class="svc-tag">SAML</span></div>
+      </div>
+
+      <div class="svc-row fade-up">
+        <div class="svc-num">03</div>
+        <div class="svc-body">
+          <h3>API & Integration Troubleshooting</h3>
+          <p>Webhook failure diagnosis, API payload inspection, data sync debugging, and third-party integration triage. Comfortable reading logs in Datadog and coordinating fixes with engineering teams.</p>
+        </div>
+        <div class="svc-tags"><span class="svc-tag">REST APIs</span><span class="svc-tag">Webhooks</span><span class="svc-tag">Datadog</span></div>
+      </div>
+
+      <div class="svc-row fade-up">
+        <div class="svc-num">04</div>
+        <div class="svc-body">
+          <h3>Escalation & Incident Management</h3>
+          <p>High-volume queue management with 100% SLA adherence. Cross-functional escalation coordination with product and engineering using structured handoff templates — severity classification, logs, steps attempted, environment context.</p>
+        </div>
+        <div class="svc-tags"><span class="svc-tag">Escalations</span><span class="svc-tag">P1 Incidents</span><span class="svc-tag">Runbooks</span></div>
+      </div>
+
+      <div class="svc-row fade-up">
+        <div class="svc-num">05</div>
+        <div class="svc-body">
+          <h3>SaaS Onboarding Assistance</h3>
+          <p>Enterprise onboarding from initial setup through feature activation. Reduces time-to-value and provides smooth Sales-to-CS handoffs. Handles user provisioning, system config, and guided product onboarding flows.</p>
+        </div>
+        <div class="svc-tags"><span class="svc-tag">Onboarding</span><span class="svc-tag">CS Ops</span><span class="svc-tag">Salesforce</span></div>
+      </div>
+
+      <div class="svc-row fade-up">
+        <div class="svc-num">06</div>
+        <div class="svc-body">
+          <h3>CRM & Documentation Management</h3>
+          <p>Structured CRM documentation, escalation logging, runbook creation, and SOP development. Calendar management, data entry, and reporting for async-first teams. Everything I know lives in writing, not in my head.</p>
+        </div>
+        <div class="svc-tags"><span class="svc-tag">Salesforce</span><span class="svc-tag">Google WS</span><span class="svc-tag">SOPs</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STACK ═══ -->
+<section class="section section-alt" id="stack">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <div>
+        <h2 class="section-title">Enterprise <em>SaaS Stack</em></h2>
+        <p class="section-sub">Production-level proficiency. Not just familiarity — I've operated these in live environments.</p>
+      </div>
+    </div>
+
+    <div class="stack-grid">
+
+      <div class="stack-block fade-up">
+        <div class="stack-label">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Cloud &amp; DevOps
+        </div>
+        <div class="stack-items">
+          <div class="stack-item"><span class="stack-name">AWS</span><span class="stack-level">Cloud Infrastructure</span></div>
+          <div class="stack-item"><span class="stack-name">Jenkins</span><span class="stack-level">CI/CD Pipelines</span></div>
+        </div>
+      </div>
+
+      <div class="stack-block stack-block--hl fade-up">
+        <div class="stack-label">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Identity &amp; Access (IAM)
+        </div>
+        <div class="stack-items">
+          <div class="stack-item"><span class="stack-name">Okta</span><span class="stack-level">SSO, SAML, SCIM</span></div>
+          <div class="stack-item"><span class="stack-name">Azure AD</span><span class="stack-level">Identity Provider</span></div>
+          <div class="stack-item"><span class="stack-name">Google WS</span><span class="stack-level">IdP Integration</span></div>
+        </div>
+      </div>
+
+      <div class="stack-block fade-up">
+        <div class="stack-label">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Monitoring &amp; Security
+        </div>
+        <div class="stack-items">
+          <div class="stack-item"><span class="stack-name">Datadog</span><span class="stack-level">Observability &amp; Logs</span></div>
+          <div class="stack-item"><span class="stack-name">KnowBe4</span><span class="stack-level">Security Awareness</span></div>
+          <div class="stack-item"><span class="stack-name">Socket.dev</span><span class="stack-level">Supply Chain Security</span></div>
+        </div>
+      </div>
+
+      <div class="stack-block fade-up">
+        <div class="stack-label">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          CRM &amp; Revenue Ops
+        </div>
+        <div class="stack-items">
+          <div class="stack-item"><span class="stack-name">Salesforce</span><span class="stack-level">CRM &amp; CS Ops</span></div>
+          <div class="stack-item"><span class="stack-name">Gong</span><span class="stack-level">Revenue Intelligence</span></div>
+          <div class="stack-item"><span class="stack-name">Segment</span><span class="stack-level">Data Pipelines</span></div>
+        </div>
+      </div>
+
+      <div class="stack-block fade-up">
+        <div class="stack-label">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          Product &amp; Engineering
+        </div>
+        <div class="stack-items">
+          <div class="stack-item"><span class="stack-name">Jira</span><span class="stack-level">Ticket &amp; Escalation Mgmt</span></div>
+          <div class="stack-item"><span class="stack-name">Productboard</span><span class="stack-level">Feature Requests</span></div>
+          <div class="stack-item"><span class="stack-name">Figma</span><span class="stack-level">UX Collaboration</span></div>
+        </div>
+      </div>
+
+      <div class="stack-block fade-up">
+        <div class="stack-label">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Compliance
+        </div>
+        <div class="stack-items">
+          <div class="stack-item"><span class="stack-name">Drata</span><span class="stack-level">Compliance Automation</span></div>
+          <div class="stack-item"><span class="stack-name">SafeBase</span><span class="stack-level">Trust Center</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="env-bar">
+      <div class="env-pill env-prod">
+        <span class="env-dot"></span>
+        <span class="mono">PRODUCTION ENV</span>
+      </div>
+      <div class="env-divider"></div>
+      <div class="env-pill env-qa">
+        <span class="env-dot"></span>
+        <span class="mono">QA / STAGING ENV</span>
+      </div>
+      <div class="env-note">Comfortable operating across both — not just one.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ CASE STUDY ═══ -->
+<section class="section" id="case-study">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <div>
+        <h2 class="section-title">Case <em>Study</em></h2>
+        <p class="section-sub">A documented example of operational problem-solving in a SaaS support environment.</p>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-head">
+        <div class="case-tag">IAM · SSO · ESCALATION MANAGEMENT</div>
+        <h3 class="case-title">Resolving SSO Escalation Overload &amp; Restoring SLA Compliance at Scale</h3>
+      </div>
+      <div class="case-body">
+
+        <div class="case-block case-challenge fade-up">
+          <div class="case-block-label">
+            <span class="blk-num">C</span> Challenge
+          </div>
+          <div class="case-content">
+            <p>A sustained spike in SSO configuration failures and third-party integration breakages drove ticket volume well beyond normal Tier 1–2 capacity. Enterprise customers were experiencing delayed provisioning, failed SCIM syncs, and SAML attribute mismatches — each generating multiple escalations. Documentation was fragmented, troubleshooting paths were inconsistent, and escalation routing to engineering had no standardized format, creating repeated back-and-forth and stalled resolutions.</p>
+          </div>
+        </div>
+
+        <div class="case-block case-action fade-up">
+          <div class="case-block-label">
+            <span class="blk-num">A</span> Action
+          </div>
+          <div class="case-content">
+            <ul class="case-list">
+              <li><strong>Diagnosed root pattern:</strong> Identified that the majority of SSO-related tickets stemmed from three recurring gaps — incorrect ACS URLs, missing attribute mappings, and misconfigured SCIM base URLs. Flagged as a systemic documentation gap, not isolated incidents.</li>
+              <li><strong>Rebuilt the documentation structure:</strong> Rewrote SSO and SCIM troubleshooting runbooks from scratch with step-by-step decision trees, common error states, and verified resolution paths for each identity provider (Okta, Azure AD, Google Workspace).</li>
+              <li><strong>Standardized escalation format:</strong> Created a structured Jira handoff template including environment context (Prod vs. QA), steps already attempted, logs attached, and severity classification — eliminating unnecessary back-and-forth.</li>
+              <li><strong>Coordinated with engineering:</strong> Established a recurring async sync channel for active escalations, enabling faster triage of recurring bug patterns and cleaner reproduction steps.</li>
+              <li><strong>Proactive customer communication:</strong> Drafted status update templates for enterprise accounts during active incidents, reducing inbound escalation noise by setting clear resolution timelines.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="case-block case-result fade-up">
+          <div class="case-block-label">
+            <span class="blk-num">R</span> Result
+          </div>
+          <div class="case-content">
+            <div class="result-grid">
+              <div class="result-metric">
+                <span class="result-val">100%</span>
+                <span class="result-lbl">SLA Compliance maintained throughout spike period</span>
+              </div>
+              <div class="result-metric">
+                <span class="result-val">↓ 40%</span>
+                <span class="result-lbl">Reduction in repeat SSO-related escalations post-documentation</span>
+              </div>
+              <div class="result-metric">
+                <span class="result-val">↑ 95%+</span>
+                <span class="result-lbl">CSAT maintained across all resolved enterprise tickets</span>
+              </div>
+              <div class="result-metric">
+                <span class="result-val">3×</span>
+                <span class="result-lbl">Faster engineering escalation resolution with structured handoff</span>
+              </div>
+            </div>
+            <p class="result-note">The runbooks and escalation framework created during this period became standard operating procedure for the team, improving resolution consistency and reducing ticket reopen rates.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
+</section>
 
-  <!-- STATS -->
-  <div class="stats-row">
-    <div class="stat-card">
-      <div class="stat-num">7+</div>
-      <div class="stat-label">Years Experience</div>
+<!-- ═══ RESULTS ═══ -->
+<section class="section section-alt" id="results">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <div>
+        <h2 class="section-title">Performance <em>Metrics</em></h2>
+        <p class="section-sub">Numbers from production environments. Not estimates.</p>
+      </div>
     </div>
-    <div class="stat-card">
-      <div class="stat-num">95%+</div>
-      <div class="stat-label">CSAT Score</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">100%</div>
-      <div class="stat-label">SLA Compliance</div>
-    </div>
-  </div>
-
-  <!-- SERVICES -->
-  <div class="card">
-    <div class="section-header">
-      <div class="section-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+    <div class="metrics-grid">
+      <div class="metric fade-up">
+        <div class="metric-num">95%<sup>+</sup></div>
+        <div class="metric-name">CSAT Score</div>
+        <div class="metric-detail">Sustained across Tier 1–2 interactions in enterprise SaaS environments</div>
       </div>
-      <span class="section-title">Services Offered</span>
-      <div class="section-line"></div>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
-        <div class="service-name">Customer Support</div>
-        <div class="service-desc">Multi-channel support via email, chat & phone with high CSAT scores.</div>
+      <div class="metric metric--hl fade-up">
+        <div class="metric-bar"></div>
+        <div class="metric-num">100%</div>
+        <div class="metric-name">SLA Compliance</div>
+        <div class="metric-detail">Zero missed SLAs across all resolved ticket queues</div>
       </div>
-      <div class="service-card">
-        <div class="service-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-        </div>
-        <div class="service-name">Admin & Scheduling</div>
-        <div class="service-desc">Calendar management, data entry, CRM documentation & reporting.</div>
+      <div class="metric fade-up">
+        <div class="metric-num">30–50</div>
+        <div class="metric-name">Tickets / Day</div>
+        <div class="metric-detail">High-volume technical resolution across complex SaaS support queues</div>
       </div>
-      <div class="service-card">
-        <div class="service-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
-        </div>
-        <div class="service-name">Technical Support</div>
-        <div class="service-desc">Tier 1–2 troubleshooting, SSO/SCIM, API & integration support.</div>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" x2="6" y1="9" y2="21"/></svg>
-        </div>
-        <div class="service-name">Escalation Management</div>
-        <div class="service-desc">High-priority case handling with cross-team coordination & resolution.</div>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <div class="service-name">Onboarding Support</div>
-        <div class="service-desc">User provisioning, system config & guided product onboarding flows.</div>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg>
-        </div>
-        <div class="service-name">SLA Management</div>
-        <div class="service-desc">Ticket lifecycle oversight ensuring 100% SLA compliance & QA targets.</div>
+      <div class="metric fade-up">
+        <div class="metric-num">7<sup>+</sup></div>
+        <div class="metric-name">Years Experience</div>
+        <div class="metric-detail">In SaaS and cloud-based support environments across the full stack</div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- SKILLS -->
-  <div class="card">
-    <div class="section-header">
-      <div class="section-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+<!-- ═══ WHY HIRE ME ═══ -->
+<section class="section" id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <div>
+        <h2 class="section-title">Why <em>Hire Me</em></h2>
+        <p class="section-sub">Specifically for SaaS founders and hiring managers who need more than "great communication skills."</p>
       </div>
-      <span class="section-title">Technical Skills</span>
-      <div class="section-line"></div>
     </div>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <div class="skill-group-label">Support Platforms</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Intercom</span>
-          <span class="skill-tag">Salesforce</span>
-          <span class="skill-tag">Jira</span>
-          <span class="skill-tag">Datadog</span>
+    <div class="why-grid">
+
+      <div class="why-card glass fade-up">
+        <div class="why-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
         </div>
+        <div class="why-title">Reduced Escalation Risk</div>
+        <div class="why-desc">I don't just close tickets — I identify root patterns. When a type of issue keeps recurring, I document the fix, update the runbook, and prevent the next five tickets before they arrive. Escalation volume drops, not just resolution time.</div>
       </div>
-      <div class="skill-group">
-        <div class="skill-group-label">Identity & Integrations</div>
-        <div class="skill-tags">
-          <span class="skill-tag">SSO</span>
-          <span class="skill-tag">SCIM</span>
-          <span class="skill-tag">API Troubleshooting</span>
-          <span class="skill-tag">JSON</span>
+
+      <div class="why-card glass fade-up">
+        <div class="why-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg>
         </div>
+        <div class="why-title">Improved Support Structure</div>
+        <div class="why-desc">I build the systems that make support scale. Structured escalation templates, triage decision trees, and documented workflows that any new team member can follow — not tribal knowledge that walks out the door.</div>
       </div>
-      <div class="skill-group">
-        <div class="skill-group-label">Productivity Tools</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Slack</span>
-          <span class="skill-tag">Google Workspace</span>
-          <span class="skill-tag">Microsoft 365</span>
+
+      <div class="why-card glass fade-up">
+        <div class="why-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
+        <div class="why-title">Strong SLA Ownership</div>
+        <div class="why-desc">100% SLA compliance isn't a goal I chase — it's the baseline I operate at. I treat every SLA as a commitment to the customer, not a metric to manage. Queues stay clear. Priorities stay obvious. Nothing falls through.</div>
       </div>
-      <div class="skill-group">
-        <div class="skill-group-label">Customer Ops</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Escalation Handling</span>
-          <span class="skill-tag">Onboarding</span>
-          <span class="skill-tag">SLA Management</span>
+
+      <div class="why-card glass fade-up">
+        <div class="why-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
+        <div class="why-title">Clear Engineering Communication</div>
+        <div class="why-desc">I write engineering-quality bug reports. Every escalation I hand to your dev team includes: environment (Prod vs. QA), exact steps to reproduce, logs attached, severity assessment, and what I already tried. No back-and-forth needed.</div>
       </div>
+
+      <div class="why-card glass fade-up">
+        <div class="why-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="why-title">Reliable in Remote Environments</div>
+        <div class="why-desc">I've operated fully remote across every role in my career. Async-first isn't an adjustment for me — it's how I work. You get daily output, clear status updates, and no need to micromanage what's in my queue.</div>
+      </div>
+
+      <div class="why-card glass fade-up">
+        <div class="why-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div class="why-title">IAM Depth You Won't Find Elsewhere</div>
+        <div class="why-desc">SSO configuration, SCIM lifecycle management, and Okta troubleshooting are rare skills on a support profile. I've handled these in production environments — not just read the documentation.</div>
+      </div>
+
     </div>
   </div>
+</section>
 
-  <!-- EXPERIENCE -->
-  <div class="card">
-    <div class="section-header">
-      <div class="section-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+<!-- ═══ WORK STYLE ═══ -->
+<section class="section section-alt" id="workstyle">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">07</span>
+      <div>
+        <h2 class="section-title">How <em>I Work</em></h2>
+        <p class="section-sub">Designed for async-first teams that need someone who operates independently.</p>
       </div>
-      <span class="section-title">Experience</span>
-      <div class="section-line"></div>
+    </div>
+    <div class="style-wrap">
+
+      <div class="traits">
+        <div class="trait fade-up">
+          <div class="trait-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div>
+            <h4>Remote-First &amp; Self-Directed</h4>
+            <p>I own my work queue end to end. No daily check-ins needed. Full accountability built in.</p>
+          </div>
+        </div>
+        <div class="trait fade-up">
+          <div class="trait-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div>
+            <h4>Documentation-First Mindset</h4>
+            <p>I write runbooks, SOPs, and escalation logs. Everything I know lives in writing, not in my head.</p>
+          </div>
+        </div>
+        <div class="trait fade-up">
+          <div class="trait-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div>
+            <h4>Stable Under Pressure</h4>
+            <p>Production incidents, P1 escalations, frustrated enterprise customers — I stay methodical and focused.</p>
+          </div>
+        </div>
+        <div class="trait fade-up">
+          <div class="trait-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </div>
+          <div>
+            <h4>Structured &amp; Process-Driven</h4>
+            <p>Every workflow I touch becomes more consistent. I build systems, not workarounds.</p>
+          </div>
+        </div>
+        <div class="trait fade-up">
+          <div class="trait-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div>
+            <h4>Precise Async Communication</h4>
+            <p>Engineering-quality written updates. No ambiguity. Clear status, clear next steps, every time.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="t-dots"><span></span><span></span><span></span></div>
+          <span class="t-title">profile.sh</span>
+        </div>
+        <div class="terminal-body">
+          <div class="tl"><span class="t-prompt">$</span><span class="t-cmd">cat profile.sh</span></div>
+          <div class="tl-blank"></div>
+          <div class="tl"><span class="t-cmt"># ── Operator Profile ──────────────</span></div>
+          <div class="tl"><span class="t-var">NAME</span>=<span class="t-str">"Charissa Remarca"</span></div>
+          <div class="tl"><span class="t-var">ROLE</span>=<span class="t-str">"Technical VA · SaaS Support"</span></div>
+          <div class="tl"><span class="t-var">YRS_EXP</span>=<span class="t-num">7</span></div>
+          <div class="tl-blank"></div>
+          <div class="tl"><span class="t-cmt"># ── Availability ──────────────────</span></div>
+          <div class="tl"><span class="t-var">TIMEZONE</span>=<span class="t-str">"GMT+8"</span></div>
+          <div class="tl"><span class="t-var">HOURS_DAY</span>=<span class="t-str">"4–6"</span></div>
+          <div class="tl"><span class="t-var">MODE</span>=<span class="t-str">"async-first"</span></div>
+          <div class="tl"><span class="t-var">LOCATION</span>=<span class="t-str">"Quezon City, PH"</span></div>
+          <div class="tl-blank"></div>
+          <div class="tl"><span class="t-cmt"># ── Performance ───────────────────</span></div>
+          <div class="tl"><span class="t-var">CSAT</span>=<span class="t-str">"95%+"</span></div>
+          <div class="tl"><span class="t-var">SLA_COMPLIANCE</span>=<span class="t-str">"100%"</span></div>
+          <div class="tl"><span class="t-var">TICKETS_PER_DAY</span>=<span class="t-str">"30–50"</span></div>
+          <div class="tl-blank"></div>
+          <div class="tl"><span class="t-cmt"># ── Stack ─────────────────────────</span></div>
+          <div class="tl"><span class="t-var">IAM</span>=<span class="t-str">"Okta SSO SAML SCIM"</span></div>
+          <div class="tl"><span class="t-var">MONITORING</span>=<span class="t-str">"Datadog"</span></div>
+          <div class="tl"><span class="t-var">CRM</span>=<span class="t-str">"Salesforce Jira"</span></div>
+          <div class="tl-blank"></div>
+          <div class="tl"><span class="t-var">STATUS</span>=<span class="t-str">"<span class="t-ok">AVAILABLE</span>"</span> <span class="t-cursor">█</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EXPERIENCE ═══ -->
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">08</span>
+      <div>
+        <h2 class="section-title">Work <em>Experience</em></h2>
+        <p class="section-sub">Reverse chronological. ATS-friendly. Emphasis on measurable outcomes.</p>
+      </div>
     </div>
     <div class="exp-list">
 
-      <div class="exp-item">
+      <div class="exp-item fade-up">
         <div class="exp-dot"></div>
         <div>
-          <div class="exp-role">Technical Support Engineer</div>
-          <div class="exp-company">SupportNinja</div>
-          <div class="exp-date">
-            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Nov 2025 – Present
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Technical Support Engineer</div>
+              <div class="exp-company">SupportNinja</div>
+            </div>
+            <div class="exp-date">Nov 2025 – Present</div>
           </div>
           <ul class="exp-bullets">
             <li>Provide Tier 2 support for B2B SaaS compliance platform resolving integration, SSO, SCIM, and API issues.</li>
-            <li>Support onboarding, system configuration, and user access troubleshooting.</li>
-            <li>Manage high-priority escalations while maintaining 100% SLA compliance.</li>
+            <li>Handle enterprise onboarding, system configuration, and user access troubleshooting across Okta and Azure AD environments.</li>
+            <li>Manage high-priority escalations with structured Jira handoffs to engineering, maintaining 100% SLA compliance.</li>
+            <li>Operate across production and QA environments with documented troubleshooting procedures.</li>
           </ul>
         </div>
       </div>
 
-      <div class="exp-item">
+      <div class="exp-item fade-up">
         <div class="exp-dot"></div>
         <div>
-          <div class="exp-role">Case Manager</div>
-          <div class="exp-company">24/7.ai</div>
-          <div class="exp-date">
-            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Apr 2025 – Oct 2025
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Case Manager</div>
+              <div class="exp-company">24/7.ai</div>
+            </div>
+            <div class="exp-date">Apr 2025 – Oct 2025</div>
           </div>
           <ul class="exp-bullets">
-            <li>Handled high-priority service and connectivity escalations.</li>
-            <li>Coordinated with technical teams to deliver timely resolution.</li>
-            <li>Maintained accurate CRM documentation and SLA targets.</li>
+            <li>Handled high-priority service and connectivity escalations for enterprise accounts.</li>
+            <li>Coordinated with technical teams to deliver timely resolution and clear customer communication.</li>
+            <li>Maintained accurate CRM documentation and met all SLA targets throughout tenure.</li>
           </ul>
         </div>
       </div>
 
-      <div class="exp-item">
+      <div class="exp-item fade-up">
         <div class="exp-dot"></div>
         <div>
-          <div class="exp-role">Shipping & Delivery Support Associate</div>
-          <div class="exp-company">Amazon Operations Services Philippines, Inc.</div>
-          <div class="exp-date">
-            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Sep 2024 – Jan 2025
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Shipping &amp; Delivery Support Associate</div>
+              <div class="exp-company">Amazon Operations Services Philippines, Inc.</div>
+            </div>
+            <div class="exp-date">Sep 2024 – Jan 2025</div>
           </div>
           <ul class="exp-bullets">
             <li>Assisted international customers via phone, chat, and email in a high-volume environment.</li>
-            <li>Troubleshot system and order tracking discrepancies and delivery concerns.</li>
+            <li>Troubleshot system and order tracking discrepancies and delivery concerns with accurate CRM logging.</li>
           </ul>
         </div>
       </div>
 
-      <div class="exp-item">
+      <div class="exp-item fade-up">
         <div class="exp-dot"></div>
         <div>
-          <div class="exp-role">Technical Support Engineer</div>
-          <div class="exp-company">Movate</div>
-          <div class="exp-date">
-            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Aug 2020 – Apr 2024
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Technical Support Engineer</div>
+              <div class="exp-company">Movate</div>
+            </div>
+            <div class="exp-date">Aug 2020 – Apr 2024</div>
           </div>
           <ul class="exp-bullets">
-            <li>Delivered Tier 1 and Tier 2 telecom support for US accounts.</li>
-            <li>Resolved 30–50 technical tickets daily while maintaining 95%+ CSAT.</li>
-            <li>Consistently met QA, SLA, and first-contact resolution metrics.</li>
+            <li>Delivered Tier 1–2 telecom support for US enterprise accounts.</li>
+            <li>Resolved 30–50 technical tickets daily while maintaining 95%+ CSAT across all queues.</li>
+            <li>Consistently met QA, SLA, and first-contact resolution performance targets over 4 years.</li>
+            <li>Collaborated with cross-functional teams on recurring escalation patterns and process improvement.</li>
           </ul>
         </div>
       </div>
 
-      <div class="exp-item">
+      <div class="exp-item fade-up">
         <div class="exp-dot"></div>
         <div>
-          <div class="exp-role">Financial Services Representative</div>
-          <div class="exp-company">CBE Companies</div>
-          <div class="exp-date">
-            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Apr 2019 – Aug 2020
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Financial Services Representative</div>
+              <div class="exp-company">CBE Companies</div>
+            </div>
+            <div class="exp-date">Apr 2019 – Aug 2020</div>
           </div>
           <ul class="exp-bullets">
-            <li>Resolved billing disputes and negotiated payment arrangements.</li>
-            <li>Ensured regulatory compliance and accurate account documentation.</li>
+            <li>Resolved billing disputes and negotiated payment arrangements with high-value accounts.</li>
+            <li>Ensured regulatory compliance and accurate account documentation in CRM systems.</li>
           </ul>
         </div>
       </div>
 
-      <div class="exp-item">
+      <div class="exp-item fade-up">
         <div class="exp-dot"></div>
         <div>
-          <div class="exp-role">Technical Support Representative</div>
-          <div class="exp-company">Foundever</div>
-          <div class="exp-date">
-            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Feb 2017 – Mar 2019
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Technical Support Representative</div>
+              <div class="exp-company">Foundever</div>
+            </div>
+            <div class="exp-date">Feb 2017 – Mar 2019</div>
           </div>
           <ul class="exp-bullets">
-            <li>Supported broadband and streaming services via phone and chat.</li>
-            <li>Achieved quality assurance and resolution performance targets.</li>
+            <li>Supported broadband and streaming services via phone and chat for US customers.</li>
+            <li>Achieved quality assurance and resolution performance targets consistently.</li>
           </ul>
         </div>
       </div>
 
     </div>
   </div>
+</section>
 
-  <!-- EDUCATION -->
-  <div class="card">
-    <div class="section-header">
-      <div class="section-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+<!-- ═══ EDUCATION ═══ -->
+<section class="section section-alt" id="education">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">09</span>
+      <div>
+        <h2 class="section-title">Education</h2>
+        <p class="section-sub">Academic foundation in information systems and business operations.</p>
       </div>
-      <span class="section-title">Education</span>
-      <div class="section-line"></div>
     </div>
-    <div class="edu-card">
+    <div class="edu-card glass fade-up">
       <div class="edu-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
       </div>
       <div>
         <div class="edu-degree">Bachelor of Science in Business Administration</div>
-        <div class="edu-field">Major in Management Information Systems</div>
+        <div class="edu-major">Major in Management Information Systems</div>
         <div class="edu-school">AMA University, Quezon City &nbsp;·&nbsp; 2024</div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- CTA -->
-  <div class="cta-card">
-    <div class="cta-title">Let's work together ✦</div>
-    <p class="cta-sub">Open to remote VA, customer success, and technical support roles worldwide.</p>
-    <a class="cta-btn" href="mailto:chrssrmrc@gmail.com">
-      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-      Get in Touch
-    </a>
+<!-- ═══ AVAILABILITY ═══ -->
+<section class="section" id="availability">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">10</span>
+      <div>
+        <h2 class="section-title">Available <em>For</em></h2>
+        <p class="section-sub">Open to remote positions worldwide. GMT+8 timezone. Async-first.</p>
+      </div>
+    </div>
+    <div class="avail-grid">
+
+      <div class="avail-card glass fade-up">
+        <div class="avail-online"></div>
+        <div class="avail-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="avail-title">Contract / Freelance VA</div>
+        <div class="avail-desc">Project-based or ongoing technical support contracts. Flexible scope. Clear deliverables. Remote-first setup from day one.</div>
+      </div>
+
+      <div class="avail-card glass fade-up">
+        <div class="avail-online"></div>
+        <div class="avail-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <div class="avail-title">Part-Time SaaS Support VA</div>
+        <div class="avail-desc">4–6 hours daily. Async-first communication. Ideal for SaaS startups that need senior-level support coverage without full-time overhead.</div>
+      </div>
+
+      <div class="avail-card glass fade-up">
+        <div class="avail-online"></div>
+        <div class="avail-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="avail-title">Full-Time Remote Support Role</div>
+        <div class="avail-desc">Full-time Technical Support Specialist or Customer Success roles. Preferably SaaS, cloud, or IAM-adjacent environments. Remote positions worldwide.</div>
+      </div>
+
+    </div>
   </div>
-</div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="section section-alt" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">11</span>
+      <div>
+        <h2 class="section-title">Get <em>In Touch</em></h2>
+        <p class="section-sub">Looking for a technical ops specialist who integrates with your team without friction?</p>
+      </div>
+    </div>
+    <div class="contact-wrap">
+
+      <div>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:chrssrmrc@gmail.com">
+            <div class="cl-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+            <div class="cl-body">
+              <span class="cl-label">EMAIL</span>
+              <span class="cl-value">chrssrmrc@gmail.com</span>
+            </div>
+            <span class="cl-arrow">↗</span>
+          </a>
+          <a class="contact-link" href="https://linkedin.com/in/charissarph/" target="_blank" rel="noopener noreferrer">
+            <div class="cl-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
+            <div class="cl-body">
+              <span class="cl-label">LINKEDIN</span>
+              <span class="cl-value">linkedin.com/in/charissarph</span>
+            </div>
+            <span class="cl-arrow">↗</span>
+          </a>
+          <div class="contact-link" style="cursor:default;">
+            <div class="cl-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="cl-body">
+              <span class="cl-label">AVAILABILITY</span>
+              <span class="cl-value">4–6 hrs/day · GMT+8 · Async-first</span>
+            </div>
+          </div>
+        </div>
+        <a href="mailto:chrssrmrc@gmail.com" class="cta-big">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Start a Conversation
+        </a>
+      </div>
+
+      <div>
+        <div class="fit-block">
+          <span class="fit-label">BEST FIT FOR</span>
+          <ul class="fit-list fit-yes">
+            <li>SaaS companies scaling support operations</li>
+            <li>Engineering teams needing IAM / SSO ops support</li>
+            <li>Cloud orgs with Tier 1–2 ticket volume</li>
+            <li>Documentation-heavy, async-first environments</li>
+            <li>Cross-functional eng + CS team collaboration</li>
+          </ul>
+        </div>
+        <div class="fit-block fit-no" style="opacity:.75;">
+          <span class="fit-label">NOT A MATCH IF</span>
+          <ul class="fit-list fit-no">
+            <li>You need non-technical admin support only</li>
+            <li>Role requires synchronous 9-to-5 only</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span class="footer-brand">CR<span>_</span> · Charissa Remarca</span>
+    <span class="footer-info">Technical VA · SaaS Support · GMT+8 · Available</span>
+  </div>
+</footer>
 
 <script>
-  function updateClock() {
-    const now = new Date();
-    const ph = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Manila' }));
-    const h = String(ph.getHours()).padStart(2,'0');
-    const m = String(ph.getMinutes()).padStart(2,'0');
-    const s = String(ph.getSeconds()).padStart(2,'0');
-    const ampm = ph.getHours() >= 12 ? 'PM' : 'AM';
-    const h12 = String(ph.getHours() % 12 || 12).padStart(2,'0');
-    document.getElementById('ph-clock').textContent = `${h12}:${m}:${s} ${ampm}`;
-    const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    document.getElementById('ph-date').textContent =
-      `${days[ph.getDay()]}, ${months[ph.getMonth()]} ${ph.getDate()}, ${ph.getFullYear()}`;
-  }
-  updateClock();
-  setInterval(updateClock, 1000);
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('nav--scrolled', window.scrollY > 40);
+  });
+
+  // Mobile hamburger
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('nav-links--open');
+    hamburger.classList.toggle('hamburger--open');
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('nav-links--open');
+      hamburger.classList.remove('hamburger--open');
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
+</body>
+</html>
